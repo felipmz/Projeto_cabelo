@@ -1,0 +1,495 @@
+.section {
+  padding: 100px 60px;
+  border-top: 1px solid var(--border);
+}
+
+.header { margin-bottom: 48px; }
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 0.92;
+  letter-spacing: 0.03em;
+  color: var(--text);
+}
+
+.title span {
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 32px;
+  align-items: start;
+}
+
+/* ── Form panel ─────────────────────────────────── */
+.formPanel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+
+.progress {
+  height: 2px;
+  background: var(--border);
+  position: relative;
+}
+
+.progressBar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  transition: width 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.stepIndicator {
+  display: flex;
+  padding: 20px 28px;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.stepDot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  position: relative;
+  opacity: 0.4;
+  transition: opacity 0.25s;
+}
+
+.stepDot::after {
+  content: '';
+  position: absolute;
+  top: 11px;
+  left: calc(50% + 12px);
+  right: calc(-50% + 12px);
+  height: 1px;
+  background: var(--border2);
+}
+
+.stepDot:last-child::after { display: none; }
+
+.stepDot span {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text3);
+  position: relative;
+  z-index: 1;
+}
+
+.stepActive {
+  opacity: 1;
+}
+
+.stepActive span {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.stepDone {
+  opacity: 0.7;
+}
+
+.stepDone span {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.stepLabel {
+  font-size: 0.6rem;
+  color: var(--text3);
+  letter-spacing: 0.05em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.stepContent {
+  padding: 32px 28px;
+}
+
+.stepTitle {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+/* ── Service selection ──────────────────────────── */
+.serviceGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.serviceOption {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  width: 100%;
+  position: relative;
+}
+
+.serviceOption:hover { border-color: var(--border2); }
+
+.serviceOption.selected {
+  border-color: var(--gold);
+  background: var(--gold-dim);
+}
+
+.serviceIcon { font-size: 1.4rem; flex-shrink: 0; }
+
+.serviceInfo { flex: 1; }
+
+.serviceName {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.serviceMeta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text2);
+}
+
+.checkmark {
+  color: var(--gold);
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* ── Barber selection ───────────────────────────── */
+.barberGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.barberOption {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  width: 100%;
+}
+
+.barberOption:hover { border-color: var(--border2); }
+.barberOption.selected { border-color: var(--gold); background: var(--gold-dim); }
+
+.barberAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gold-dim);
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.barberName {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.barberSpec {
+  font-size: 0.75rem;
+  color: var(--text2);
+}
+
+/* ── Time slots ─────────────────────────────────── */
+.timeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.timeSlot {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 10px 4px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.timeSlot:hover:not(:disabled) { border-color: var(--border2); color: var(--text); }
+.timeSlot.selected { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+.timeSlot.taken  { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
+
+/* ── Inputs ─────────────────────────────────────── */
+.label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.input {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 12px 16px;
+  font-size: 0.88rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+  color-scheme: dark;
+}
+
+.input:focus { border-color: var(--gold); }
+
+.textarea {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 12px 16px;
+  font-size: 0.88rem;
+  color: var(--text);
+  outline: none;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.2s;
+}
+
+.textarea:focus { border-color: var(--gold); }
+
+/* ── Summary ────────────────────────────────────── */
+.summary {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.summaryLabel {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--text3);
+  text-transform: uppercase;
+}
+
+.summaryValue {
+  font-size: 0.88rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.summaryDivider {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 0;
+}
+
+.summaryTotal {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+
+/* ── Nav buttons ────────────────────────────────── */
+.navButtons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* ── Done step ──────────────────────────────────── */
+.doneStep {
+  padding: 48px 28px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.doneIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(45,206,137,0.1);
+  border: 1px solid rgba(45,206,137,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--green);
+  animation: pulse-gold 2s ease-in-out 3;
+}
+
+.doneTitle {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+.doneText {
+  font-size: 0.88rem;
+  color: var(--text2);
+  line-height: 1.7;
+  max-width: 360px;
+}
+
+.doneCode {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-md);
+  padding: 14px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.doneCodeLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: var(--text3);
+  text-transform: uppercase;
+}
+
+.doneCodeValue {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+}
+
+/* ── AI Panel ───────────────────────────────────── */
+.aiPanel {
+  position: sticky;
+  top: 20px;
+}
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 1100px) {
+  .layout { grid-template-columns: 1fr; }
+  .aiPanel { display: none; }
+}
+
+@media (max-width: 768px) {
+  .section { padding: 80px 24px; }
+  .stepContent { padding: 24px 20px; }
+}
+
+/* Login nudge */
+.loginNudge {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--gold-dim); border: 1px solid var(--border2);
+  border-radius: var(--r-lg); padding: 12px 18px;
+  font-size: 0.8rem; color: var(--text2); flex-wrap: wrap;
+  margin-bottom: -8px;
+}
+.loginNudge span:first-child { color: var(--gold); font-size: 1rem; }
+.nudgeBtn {
+  background: var(--gold); color: #050507;
+  border: none; border-radius: var(--r-sm);
+  padding: 5px 12px; font-size: 0.75rem; font-weight: 600;
+  cursor: pointer; white-space: nowrap; margin-left: auto;
+  transition: box-shadow 0.2s;
+}
+.nudgeBtn:hover { box-shadow: 0 4px 12px var(--gold-glow); }
+
+/* Favorites banner */
+.favBanner {
+  display: flex; align-items: flex-start; gap: 8px;
+  background: rgba(45,206,137,0.08); border: 1px solid rgba(45,206,137,0.25);
+  border-radius: var(--r-lg); padding: 12px 16px;
+  font-size: 0.8rem; color: var(--text2); line-height: 1.5;
+  margin-bottom: -8px;
+}
+.favBanner span:first-child { color: var(--green); font-size: 0.9rem; flex-shrink: 0; }
+.favBannerWarn {
+  background: rgba(251,140,0,0.08);
+  border-color: rgba(251,140,0,0.3);
+}
+.favBannerWarn span:first-child { color: var(--orange); }
+
+/* Barber photo in select */
+.barberPhoto {
+  width: 100%; height: 100%;
+  object-fit: cover; border-radius: 50%;
+}
+
+/* Fav star */
+.favStar {
+  color: var(--gold); font-size: 0.85rem;
+  position: absolute; top: 8px; right: 8px;
+}
+
+/* Favorite time slot */
+.favSlot {
+  border-color: rgba(201,162,39,0.5) !important;
+  color: var(--gold) !important;
+}
+
+/* Unavailable note */
+.unavailNote {
+  font-size: 0.72rem; color: var(--text3);
+  font-style: italic; padding: 6px 2px;
+}

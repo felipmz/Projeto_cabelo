@@ -1,0 +1,136 @@
+.section {
+  padding: 100px 60px;
+  border-top: 1px solid var(--border);
+}
+
+.header {
+  margin-bottom: 48px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 0.92;
+  letter-spacing: 0.03em;
+  color: var(--text);
+}
+
+.title span {
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 680px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px 28px;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  transition: border-color 0.25s;
+  animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.card:hover {
+  border-color: var(--border2);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover::before { opacity: 1; }
+
+.unavailable {
+  opacity: 0.5;
+}
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--gold-dim);
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.availBadge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid var(--card);
+}
+
+.availGreen { background: var(--green); }
+.availRed   { background: var(--red); }
+
+.info {
+  flex: 1;
+}
+
+.name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.specialty {
+  font-size: 0.8rem;
+  color: var(--text2);
+  margin-bottom: 6px;
+}
+
+.status {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--text3);
+}
+
+.number {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: rgba(201,162,39,0.08);
+  letter-spacing: 0.05em;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  .section { padding: 80px 24px; }
+  .number { display: none; }
+}

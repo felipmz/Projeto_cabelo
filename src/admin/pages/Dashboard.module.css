@@ -1,0 +1,204 @@
+.page {
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  overflow-y: auto;
+  height: 100%;
+  animation: fadeUp 0.35s ease both;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pageLabel {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.pageTitle {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  line-height: 1;
+}
+
+.dateChip {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--text2);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 6px 14px;
+  text-transform: capitalize;
+}
+
+/* Stat grid */
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.statCard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.statCard:hover { border-color: var(--border2); }
+
+.statIcon {
+  font-size: 1rem;
+  color: var(--accent, var(--gold));
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--text);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: var(--text2);
+}
+
+.statBar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent, var(--gold));
+  opacity: 0.4;
+}
+
+/* Section */
+.section { display: flex; flex-direction: column; gap: 14px; }
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+.sectionCount {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--text3);
+}
+
+/* Appointment cards */
+.aptList { display: flex; flex-direction: column; gap: 8px; }
+
+.aptCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 16px 20px;
+  transition: border-color 0.2s;
+}
+
+.apt_pending   { border-left-color: var(--orange); }
+.apt_confirmed { border-left-color: var(--blue); }
+.apt_completed { border-left-color: var(--green); }
+.apt_cancelled { border-left-color: var(--red); opacity: 0.5; }
+
+.aptTime {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 52px;
+}
+
+.aptTimeVal {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.aptDur {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text3);
+  letter-spacing: 0.08em;
+}
+
+.aptInfo { flex: 1; min-width: 0; }
+
+.aptClient {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.aptMeta {
+  font-size: 0.78rem;
+  color: var(--text2);
+  margin-bottom: 2px;
+}
+
+.aptNotes {
+  font-size: 0.72rem;
+  color: var(--text3);
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.aptRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.aptPrice {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: 0.03em;
+}
+
+.aptActions { display: flex; gap: 5px; }
+
+/* Skeletons */
+.skels { display: flex; flex-direction: column; gap: 8px; }
+.skel { height: 80px; }

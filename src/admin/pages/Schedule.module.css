@@ -1,0 +1,208 @@
+.page { padding: 28px 32px; display: flex; flex-direction: column; gap: 20px; overflow-y: auto; height: 100%; animation: fadeUp 0.35s ease both; }
+.pageHeader { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.pageLabel { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+.pageTitle { font-family: var(--font-display); font-size: 2.2rem; letter-spacing: 0.04em; color: var(--text); line-height: 0.95; }
+.settingsBtn { font-size: 0.8rem; }
+
+/* Settings */
+.settingsPanel {
+  background: var(--card);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-lg);
+  padding: 18px 20px;
+  animation: fadeUp 0.2s ease both;
+}
+.settingsTitle { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.settingsRow   { display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-end; }
+.timeInput     { width: 120px; }
+
+/* Date picker */
+.datePicker { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+.dateBtn { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 10px 12px; border-radius: var(--r-md); border: 1px solid var(--border); background: var(--card); cursor: pointer; transition: all 0.18s; min-width: 50px; }
+.dateBtn:hover { border-color: var(--border2); }
+.dateBtnActive { border-color: var(--gold); background: var(--gold-dim); }
+.dateBtnToday .dateBtnNum { color: var(--gold); }
+.dateBtnActive .dateBtnDay,
+.dateBtnActive .dateBtnNum { color: var(--gold); }
+.dateBtnDay { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.08em; color: var(--text3); text-transform: uppercase; }
+.dateBtnNum { font-family: var(--font-display); font-size: 1.2rem; color: var(--text); line-height: 1; }
+.dateInput  { height: 52px; background: var(--card); border: 1px solid var(--border); border-radius: var(--r-md); padding: 8px 12px; font-size: 0.78rem; color: var(--text2); outline: none; cursor: pointer; flex-shrink: 0; }
+
+/* Legend */
+.legend { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.legendItem { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--text2); }
+.dot { width: 10px; height: 10px; border-radius: 3px; }
+.dotFree     { background: var(--border); border: 1px solid var(--border2); }
+.dotOccupied { background: rgba(94,114,228,0.5); border: 1px solid var(--blue); }
+.dotBlocked  { background: rgba(245,54,92,0.3); border: 1px solid var(--red); }
+.legendNote  { font-size: 0.7rem; color: var(--text3); margin-left: auto; font-style: italic; }
+
+/* ── Cinema Grid ─────────────────────────────────── */
+.gridWrapper {
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--card);
+  flex: 1;
+  min-height: 300px;
+}
+
+.cinemaGrid {
+  display: grid;
+  grid-template-columns: 56px repeat(var(--barber-count, 1), minmax(160px, 1fr));
+  min-width: fit-content;
+  position: relative;
+}
+
+/* Corner */
+.cornerCell {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 4px;
+}
+.cornerText { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text3); letter-spacing: 0.08em; text-align: center; }
+
+/* Barber header */
+.barberHeader {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.barberAvatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--gold-dim);
+  border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.barberHeaderInfo { flex: 1; min-width: 0; }
+.barberHeaderName { font-size: 0.82rem; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.barberHeaderStats { display: flex; align-items: center; gap: 4px; font-size: 0.62rem; margin-top: 2px; font-family: var(--font-mono); }
+.statFree { color: var(--green); }
+.statOcc  { color: var(--blue); }
+.statBlk  { color: var(--red); }
+.statDot  { color: var(--text3); }
+.availDot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.availGreen { background: var(--green); box-shadow: 0 0 5px var(--green); }
+.availRed   { background: var(--red); }
+
+/* Time cells */
+.timeCell {
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  padding: 0 6px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+.timeCellHour { background: var(--bg3); }
+.timeLabel {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text3);
+  letter-spacing: 0.05em;
+  user-select: none;
+}
+.timeCellHour .timeLabel { color: var(--text2); }
+.hourLine {
+  position: absolute;
+  top: 0; right: 0; left: 0;
+  height: 1px;
+  background: var(--border);
+}
+
+/* Slot cells */
+.freeCell {
+  height: 44px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+  cursor: pointer;
+  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.freeCell:hover    { background: rgba(201,162,39,0.07); }
+.freeCellAlt       { background: rgba(255,255,255,0.01); }
+.freeCellAlt:hover { background: rgba(201,162,39,0.08); }
+
+.blockedCell {
+  height: 44px;
+  background: rgba(245,54,92,0.08);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid rgba(245,54,92,0.1);
+  border-left: 2px solid var(--red);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  transition: background 0.15s;
+}
+.blockedCell:hover { background: rgba(245,54,92,0.14); }
+.blockedIcon { font-size: 0.65rem; color: var(--red); opacity: 0.7; }
+.blockedReason { font-size: 0.6rem; color: var(--red); opacity: 0.6; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.continuationCell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid rgba(94,114,228,0.1);
+  background: rgba(94,114,228,0.04);
+  pointer-events: none;
+}
+
+.occupiedCell {
+  background: rgba(94,114,228,0.1);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid rgba(94,114,228,0.15);
+  border-left: 3px solid var(--apt-color, var(--blue));
+  cursor: pointer;
+  padding: 6px 10px;
+  display: flex;
+  align-items: flex-start;
+  overflow: hidden;
+  transition: background 0.15s;
+  position: relative;
+  z-index: 5;
+}
+.occupiedCell:hover { background: rgba(94,114,228,0.18); }
+
+.aptCellContent { display: flex; flex-direction: column; gap: 2px; width: 100%; overflow: hidden; }
+.aptCellName { font-size: 0.78rem; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.aptCellSvc  { font-size: 0.68rem; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ── Appointment detail modal extras ─────────────── */
+.aptDetail { display: flex; flex-direction: column; gap: 2px; }
+.aptDetailRow { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.aptDetailRow:last-child { border-bottom: none; }
+.aptDetailLabel { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); }
+.aptDetailValue { font-size: 0.85rem; color: var(--text); font-weight: 500; text-align: right; }
+.aptDetailPrice { font-family: var(--font-display); font-size: 1.2rem; color: var(--gold); letter-spacing: 0.03em; }
+.aptDetailPhone { color: var(--gold); font-size: 0.85rem; transition: opacity 0.2s; }
+.aptDetailPhone:hover { opacity: 0.75; }
+.aptDetailDivider { height: 1px; background: var(--border); margin: 4px 0; }
+.aptDetailActions { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 4px; }

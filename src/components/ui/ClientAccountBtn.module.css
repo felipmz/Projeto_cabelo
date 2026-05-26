@@ -1,0 +1,38 @@
+.loginBtn {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--gold-dim); border: 1px solid var(--border2);
+  border-radius: var(--r-md); padding: 8px 14px;
+  font-size: 0.78rem; font-weight: 500; color: var(--gold);
+  cursor: pointer; transition: all 0.2s;
+  font-family: var(--font-sans);
+}
+.loginBtn:hover { background: rgba(201,162,39,0.2); border-color: var(--gold); }
+
+.accountWrap { position: relative; display: inline-flex; }
+
+.accountBtn {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--gold-dim); border: 1px solid var(--border2);
+  border-radius: var(--r-md); padding: 5px 12px 5px 5px;
+  cursor: pointer; transition: all 0.2s;
+}
+.accountBtn:hover { border-color: var(--gold); }
+
+.photo, .initials {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--gold-dim); border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 0.75rem; color: var(--gold);
+  overflow: hidden; object-fit: cover; flex-shrink: 0;
+}
+.initials { font-size: 0.7rem; }
+
+.accountName { font-size: 0.78rem; font-weight: 500; color: var(--gold); }
+
+.favDot {
+  position: absolute; top: 0; right: 0;
+  width: 8px; height: 8px;
+  background: var(--green); border: 2px solid var(--bg);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--green);
+}

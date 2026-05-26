@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Background layers */
+  --bg:    #050507;
+  --bg2:   #0a0a0f;
+  --bg3:   #0f0f18;
+  --card:  #0d0d14;
+  --card2: #12121c;
+
+  /* Gold accent palette */
+  --gold:    #c9a227;
+  --gold2:   #e8c547;
+  --gold3:   #f5d878;
+  --gold-dim: rgba(201,162,39,0.15);
+  --gold-glow: rgba(201,162,39,0.4);
+
+  /* Text */
+  --text:  #f0ece4;
+  --text2: #a09880;
+  --text3: #5a5445;
+
+  /* Borders */
+  --border:  #1a1a25;
+  --border2: rgba(201,162,39,0.25);
+
+  /* Status */
+  --green: #2dce89;
+  --red:   #f5365c;
+
+  /* Fonts */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-sans:    'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  /* Radius */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+a { text-decoration: none; color: inherit; }
+button { font-family: var(--font-sans); cursor: pointer; }
+input, textarea, select { font-family: var(--font-sans); }
+
+/* ── Animações globais ─────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 var(--gold-glow); }
+  50%       { box-shadow: 0 0 20px 4px var(--gold-glow); }
+}
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+@keyframes borderRotate {
+  from { --angle: 0deg; }
+  to   { --angle: 360deg; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Section labels ────────────────────────────────── */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* ── Gold button ───────────────────────────────────── */
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: #050507;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: var(--r-sm);
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-gold::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+}
+.btn-gold:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px var(--gold-glow);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--gold);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--border2);
+  border-radius: var(--r-sm);
+  padding: 11px 28px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-outline:hover {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+}

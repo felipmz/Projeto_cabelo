@@ -1,0 +1,32 @@
+.btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 40px;
+  height: 40px;
+  background: var(--gold-dim);
+  border: 1px solid var(--border2);
+  border-radius: var(--r-md);
+  color: var(--gold);
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  z-index: 500;
+}
+
+.btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.btn:hover {
+  background: var(--gold);
+  color: #050507;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .btn { bottom: 80px; right: 16px; }
+}

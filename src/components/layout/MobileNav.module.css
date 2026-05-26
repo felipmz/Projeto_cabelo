@@ -1,0 +1,51 @@
+.mobileNav { display: none; }
+
+@media (max-width: 768px) {
+  .mobileNav {
+    display: flex;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(10,10,15,0.97);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border);
+    z-index: 1000;
+    padding: 8px 0 env(safe-area-inset-bottom, 8px);
+  }
+
+  .item {
+    flex: 1;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    padding: 6px 4px;
+    color: var(--text3);
+    transition: color 0.2s;
+    background: none; border: none; cursor: pointer;
+    font-family: var(--font-sans);
+    text-decoration: none;
+    position: relative;
+  }
+  .item.active, .accountItem:hover { color: var(--gold); }
+
+  .icon  { font-size: 0.9rem; line-height: 1; }
+  .label { font-size: 0.58rem; letter-spacing: 0.04em; }
+
+  .accountItem { position: relative; }
+
+  .miniAvatar {
+    width: 22px; height: 22px; border-radius: 50%;
+    object-fit: cover; border: 1px solid var(--gold);
+  }
+
+  .avatarInitials {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--gold-dim); border: 1px solid var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 0.6rem; color: var(--gold);
+  }
+
+  .favDot {
+    position: absolute; top: 5px; right: calc(50% - 14px);
+    width: 6px; height: 6px;
+    background: var(--green); border: 1px solid var(--bg);
+    border-radius: 50%; box-shadow: 0 0 4px var(--green);
+  }
+}

@@ -1,0 +1,170 @@
+.sidebar {
+  width: 220px;
+  min-width: 220px;
+  height: 100dvh;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 0;
+  position: relative;
+  z-index: 100;
+}
+
+/* Gold vertical line on left */
+.sidebar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  opacity: 0.5;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logoMark {
+  font-size: 1.6rem;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.logoName {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  line-height: 1;
+}
+
+.logoTagline {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  color: var(--text3);
+  margin-top: 3px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: pulse-green 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.statusText {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text2);
+  letter-spacing: 0.05em;
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 20px 12px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text2);
+  transition: all 0.2s;
+  position: relative;
+  cursor: pointer;
+}
+
+.navLink:hover {
+  color: var(--text);
+  background: rgba(255,255,255,0.04);
+}
+
+.navLink.active {
+  color: var(--gold);
+  background: var(--gold-dim);
+}
+
+.navIcon {
+  font-size: 0.7rem;
+  color: var(--text3);
+  transition: color 0.2s;
+  width: 14px;
+  text-align: center;
+}
+
+.navLink.active .navIcon { color: var(--gold); }
+.navLink:hover .navIcon  { color: var(--text2); }
+
+.navLabel { letter-spacing: 0.03em; }
+
+.activeLine {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 60%;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.sideFooter {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+}
+
+.hours {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.address {
+  font-size: 0.7rem;
+  color: var(--text3);
+  line-height: 1.4;
+}
+
+/* ── Mobile hidden ──────────────────────────────── */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+}
+
+.clientSection {
+  padding: 14px 16px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}

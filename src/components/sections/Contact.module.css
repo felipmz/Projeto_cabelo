@@ -1,0 +1,132 @@
+.section {
+  padding: 100px 60px 60px;
+  border-top: 1px solid var(--border);
+}
+
+.header { margin-bottom: 48px; }
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 0.92;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.title span {
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sub {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  margin-bottom: 60px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 20px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.card:hover {
+  border-color: var(--border2);
+  transform: translateY(-2px);
+}
+
+.cardIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-md);
+  background: var(--gold-dim);
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.cardLabel {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.cardValue {
+  font-size: 0.85rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.arrow {
+  margin-left: auto;
+  color: var(--text3);
+  font-size: 0.9rem;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.card:hover .arrow {
+  transform: translateX(3px);
+  color: var(--gold);
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footerBrand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footerIcon {
+  font-size: 1.2rem;
+  color: var(--gold);
+}
+
+.footerName {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: var(--text);
+}
+
+.footerText {
+  font-size: 0.75rem;
+  color: var(--text3);
+}
+
+@media (max-width: 768px) {
+  .section { padding: 80px 24px 60px; }
+}
