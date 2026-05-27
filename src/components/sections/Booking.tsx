@@ -5,7 +5,6 @@ import { useClientAuthModal } from '../ui/ClientAuthModal';
 import { Appointment, Service, Barber } from '../../types';
 import { availableTimeSlots } from '../../data';
 import styles from './Booking.module.css';
-import AIAssistant from '../ui/AIAssistant';
 
 type Step = 'service' | 'barber' | 'datetime' | 'info' | 'confirm' | 'done';
 
@@ -321,8 +320,6 @@ const Booking: React.FC = () => {
             </div>
           )}
         </div>
-
-        <div className={styles.aiPanel}><AIAssistant bookingContext={booking} /></div>
       </div>
     </section>
   );
