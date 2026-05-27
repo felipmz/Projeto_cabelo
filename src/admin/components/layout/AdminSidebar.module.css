@@ -139,3 +139,81 @@
 }
 
 .signOut:hover { border-color: var(--border2); color: var(--red); }
+
+/* ── Mobile Layout ── */
+.mobileHeader {
+  display: none;
+}
+
+.mobileClose {
+  display: none;
+}
+
+.overlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobileHeader {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+
+  .mobileToggle {
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .mobileTitle {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--text);
+    letter-spacing: 0.05em;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .mobileClose {
+    display: block;
+    background: transparent;
+    border: none;
+    color: var(--text2);
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: auto;
+  }
+
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    z-index: 45;
+  }
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import PhotoUpload from '../../../components/ui/PhotoUpload';
 import { uploadPhoto } from '../../../firebase/uploadPhoto';
@@ -25,6 +25,7 @@ const NAV: { id: AdminPage; label: string; icon: string }[] = [
 
 const AdminSidebar: React.FC<Props> = ({ current, onChange }) => {
   const { user, signOut } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleAdminPhoto = async (file: File) => {
     if (!user) return;
@@ -34,28 +35,37 @@ const AdminSidebar: React.FC<Props> = ({ current, onChange }) => {
   };
 
   return (
-    <aside className={s.sidebar}>
-      <div className={s.logo}>
-        <span className={s.logoIcon}>✂</span>
-        <div>
-          <div className={s.logoName}>BarberX</div>
-          <div className={s.logoSub}>ADMIN</div>
-        </div>
+    <>
+      <div className={s.mobileHeader}>
+        <button className={s.mobileToggle} onClick={() => setIsOpen(true)}>☰</button>
+        <div className={s.mobileTitle}>BarberX Admin</div>
       </div>
+      
+      {isOpen && <div className={s.overlay} onClick={() => setIsOpen(false)} />}
+      
+      <aside className={`${s.sidebar} ${isOpen ? s.open : ''}`}>
+        <div className={s.logo}>
+          <span className={s.logoIcon}>✂</span>
+          <div>
+            <div className={s.logoName}>BarberX</div>
+            <div className={s.logoSub}>ADMIN</div>
+          </div>
+          <button className={s.mobileClose} onClick={() => setIsOpen(false)}>✕</button>
+        </div>
 
-      <nav className={s.nav}>
-        {NAV.map(item => (
-          <button
-            key={item.id}
-            className={`${s.navItem} ${current === item.id ? s.active : ''}`}
-            onClick={() => onChange(item.id)}
-          >
-            <span className={s.navIcon}>{item.icon}</span>
-            <span className={s.navLabel}>{item.label}</span>
-            {current === item.id && <span className={s.activeLine} />}
-          </button>
-        ))}
-      </nav>
+        <nav className={s.nav}>
+          {NAV.map(item => (
+            <button
+              key={item.id}
+              className={`${s.navItem} ${current === item.id ? s.active : ''}`}
+              onClick={() => { onChange(item.id); setIsOpen(false); }}
+            >
+              <span className={s.navIcon}>{item.icon}</span>
+              <span className={s.navLabel}>{item.label}</span>
+              {current === item.id && <span className={s.activeLine} />}
+            </button>
+          ))}
+        </nav>
 
       <div className={s.footer}>
         <div className={s.userInfo}>
@@ -76,6 +86,7 @@ const AdminSidebar: React.FC<Props> = ({ current, onChange }) => {
         </button>
       </div>
     </aside>
+    </>
   );
 };
 
