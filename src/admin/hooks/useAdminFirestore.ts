@@ -7,9 +7,12 @@ import {
   collection, onSnapshot, addDoc, updateDoc, deleteDoc,
   doc, setDoc, getDoc, query, where, getDocs,
 } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
 import { db, auth } from '../../firebase/config';
 import { Service, Barber, Appointment, BarberInfo, Testimonial } from '../../types';
 
+// uid() síncrono — usado apenas dentro de funções async (save/remove)
+// onde o usuário já está autenticado com certeza
 const uid = () => auth.currentUser?.uid ?? '';
 
 // ─── Serviços ─────────────────────────────────────────────
@@ -18,16 +21,19 @@ export function useAdminServices() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!uid()) return;
-    const ref = collection(db, 'users', uid(), 'services');
-    const unsub = onSnapshot(ref, (snap) => {
-      const items = snap.docs
-        .map(d => ({ id: d.id, ...d.data() } as Service))
-        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-      setData(items);
-      setLoading(false);
-    }, () => setLoading(false));
-    return unsub;
+    const unsubAuth = onAuthStateChanged(auth, (user) => {
+      if (!user) { setLoading(false); return; }
+      const ref = collection(db, 'users', user.uid, 'services');
+      const unsubSnap = onSnapshot(ref, (snap) => {
+        const items = snap.docs
+          .map(d => ({ id: d.id, ...d.data() } as Service))
+          .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+        setData(items);
+        setLoading(false);
+      }, () => setLoading(false));
+      return unsubSnap;
+    });
+    return unsubAuth;
   }, []);
 
   const save = async (service: Omit<Service, 'id'> & { id?: string }) => {
@@ -52,16 +58,20 @@ export function useAdminBarbers() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!uid()) return;
-    const ref = collection(db, 'users', uid(), 'barbers');
-    const unsub = onSnapshot(ref, (snap) => {
-      const items = snap.docs
-        .map(d => ({ id: d.id, ...d.data() } as Barber))
-        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-      setData(items);
-      setLoading(false);
-    }, () => setLoading(false));
-    return unsub;
+    // Aguarda o Firebase Auth resolver antes de abrir o listener
+    const unsubAuth = onAuthStateChanged(auth, (user) => {
+      if (!user) { setLoading(false); return; }
+      const ref = collection(db, 'users', user.uid, 'barbers');
+      const unsubSnap = onSnapshot(ref, (snap) => {
+        const items = snap.docs
+          .map(d => ({ id: d.id, ...d.data() } as Barber))
+          .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+        setData(items);
+        setLoading(false);
+      }, () => setLoading(false));
+      return unsubSnap; // limpa o snapshot quando auth muda
+    });
+    return unsubAuth;
   }, []);
 
   const save = async (barber: Omit<Barber, 'id'> & { id?: string }) => {
@@ -195,16 +205,19 @@ export function useAdminTestimonials() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!uid()) return;
-    const ref = collection(db, 'users', uid(), 'testimonials');
-    const unsub = onSnapshot(ref, (snap) => {
-      const items = snap.docs
-        .map(d => ({ id: d.id, ...d.data() } as Testimonial))
-        .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-      setData(items);
-      setLoading(false);
-    }, () => setLoading(false));
-    return unsub;
+    const unsubAuth = onAuthStateChanged(auth, (user) => {
+      if (!user) { setLoading(false); return; }
+      const ref = collection(db, 'users', user.uid, 'testimonials');
+      const unsubSnap = onSnapshot(ref, (snap) => {
+        const items = snap.docs
+          .map(d => ({ id: d.id, ...d.data() } as Testimonial))
+          .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+        setData(items);
+        setLoading(false);
+      }, () => setLoading(false));
+      return unsubSnap;
+    });
+    return unsubAuth;
   }, []);
 
   const save = async (t: Omit<Testimonial, 'id'> & { id?: string }) => {
