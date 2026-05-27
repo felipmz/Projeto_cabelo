@@ -4,12 +4,12 @@ import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyB-c_55wHpLeY9YwpCMhtOq9AbB92nUNcM",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "portfolio-admin-c953e.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "portfolio-admin-c953e",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "portfolio-admin-c953e.firebasestorage.app",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "232388931565",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:232388931565:web:891f7490678cb1fffc81e4",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyCzzFE8f7D3GfZ4f9Czp9q3-IcQCKOZGdk",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "cabelo-30da4.firebaseapp.com",
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "cabelo-30da4",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "cabelo-30da4.firebasestorage.app",
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "1044595431880",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:1044595431880:web:a00159d8fbe02e4e8d48fd",
 };
 
 const app = initializeApp(firebaseConfig);

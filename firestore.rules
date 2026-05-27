@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Dados da barbearia (admin gerencia, público lê) ──────────────────
+    match /users/{adminId}/{document=**} {
+
+      // Leitura pública: serviços, barbeiros, depoimentos, config
+      allow read: if true;
+
+      // Escrita: somente o próprio admin autenticado
+      allow write: if request.auth != null && request.auth.uid == adminId;
+    }
+
+    // ── Agendamentos ─────────────────────────────────────────────────────
+    match /users/{adminId}/appointments/{appointmentId} {
+
+      // Qualquer usuário autenticado pode criar agendamento
+      allow create: if request.auth != null;
+
+      // Leitura e edição: o próprio cliente ou o admin
+      allow read, update, delete: if request.auth != null
+        && (request.auth.uid == adminId
+            || request.auth.uid == resource.data.clientId);
+    }
+
+    // ── Perfis dos clientes ──────────────────────────────────────────────
+    match /clients/{userId} {
+
+      // Cada cliente acessa apenas o próprio perfil
+      allow read, write: if request.auth != null
+        && request.auth.uid == userId;
+    }
+  }
+}

@@ -13,6 +13,7 @@ import { useActiveSection } from './hooks/useActiveSection';
 import './styles/globals.css';
 import styles from './App.module.css';
 
+
 const SECTION_IDS = ['home', 'services', 'barbers', 'book', 'testimonials', 'contact'];
 
 const AppInner: React.FC = () => {
@@ -35,10 +36,13 @@ const AppInner: React.FC = () => {
   );
 };
 
-const App: React.FC = () => (
-  <ClientAuthProvider>
-    <AppInner />
-  </ClientAuthProvider>
-);
+const App: React.FC = () => {
+
+  return (
+    <ClientAuthProvider>
+      <AppInner />
+    </ClientAuthProvider>
+  );
+};
 
 export default App;
